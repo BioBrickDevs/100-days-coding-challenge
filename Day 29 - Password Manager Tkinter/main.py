@@ -1,13 +1,14 @@
 import tkinter
 import os
 import tkinter.messagebox
-
+import pyperclip
 import random
+
 
 
 directory_path = os.getcwd()
 print("My current directory is : " + directory_path)
-filepath = directory_path + "/logo2.gif"
+filepath ="logo2.gif"
 print(filepath)
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -42,7 +43,7 @@ def generate_password():
 
     password_field.delete(0,tkinter.END)
     password_field.insert(0,password)
-
+    pyperclip.copy(password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_data_to_file():
@@ -66,7 +67,7 @@ def save_data_to_file():
 
 
 # ---------------------------- UI SETUP ------------------------------- #
-# image_path =
+
 window = tkinter.Tk()
 window.title("Password Manager")
 window.config(padx=50, pady=50, bg="white")
