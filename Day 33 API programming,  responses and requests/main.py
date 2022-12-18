@@ -5,7 +5,7 @@ def get_quote():
     response = requests.get(url="https://api.kanye.rest")
     print(response.json())
     canvas.itemconfig(quote_text, text=response.json()["quote"])
-    #Write your code here.
+
 
 
 
