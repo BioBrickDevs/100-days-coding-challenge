@@ -1,9 +1,11 @@
 import datetime
 import smtplib
 import random
+
+
 SMTP_USER = "youremail@gmail.com"
 SMTP_PASSWORD = "yourpassword"
-SMTP_HOST = "smtp.google.com"
+SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 587
 
 
