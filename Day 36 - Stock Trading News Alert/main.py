@@ -7,7 +7,7 @@ dotenv.load_dotenv()
 
 
 under_watch = {
-    "MRNA": "Moderna Inc",
+    "AMD": "Advanced Micro Devices Inc",
     "TSLA": "Tesla Inc",
 }
 
@@ -44,9 +44,9 @@ def get_market_values(stock_symbol_alphavantage, company_name_for_new):
             stats += "+" + str(round(difference_percentage, 2)) + \
                 " %, " + str(round(difference, 2)) + " $" + "<br>"
         else:
-            stats += "+" + str(round(difference_percentage, 2)) + \
+            stats += "-" + str(round(difference_percentage, 2)) + \
                 " %, " + str(round(difference, 2)) + " $" + "<br>"
-            message = stats + message
+        message = stats + message
         send_message.send_message(message, COMPANY_NAME)
         print("Message sent!")
     print("Script has run!")
