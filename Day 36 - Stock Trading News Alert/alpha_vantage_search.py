@@ -2,7 +2,7 @@ import requests
 import json
 import dotenv
 import os
-# simple commandline program for searching different sympols on alphavantage
+# simple command line program for searching different symbols on alphavantage
 dotenv.load_dotenv()
 alpha_vantage_key = os.environ.get("alpha_vantage_key")
 
