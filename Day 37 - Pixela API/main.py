@@ -2,11 +2,11 @@ import requests
 import datetime
 import dotenv
 import os
-dotenv.dotenv()
 
-    """This code is not a working project to do any usefull. Only how to create user account, 
-        create a new graph and how to update the graph pixels. How to delete and how to update.
-        """
+dotenv.load_dotenv()
+
+info = """This code is not a working project to do any usefull. Only how to create user account, 
+        create a new graph and how to update the graph pixels. How to delete and how to update."""
 
 
 
