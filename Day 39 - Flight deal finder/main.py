@@ -37,4 +37,4 @@ for city, info in cities.items():
 pool.shutdown()
 print("Prosesses are shutdown!")
 end = time.time()
-print(start-end, results)
+print(end- start, results)

@@ -37,7 +37,7 @@ class FlightSearch:
         header = {
             "apikey": KIVI_API_KEY,
         }
-        print(to)
+
         parameters = {
             "fly_from": f"city:{fro}",
             "fly_to": to,
@@ -50,12 +50,12 @@ class FlightSearch:
             "max_stopovers": 7,
             "one_for_city": 1,
             # "only_weekends": "true",
-            #"ret_fly_days": "0",
-            #"ret_fly_days_type": "arrival",
+            # "ret_fly_days": "0",
+            # "ret_fly_days_type": "arrival",
 
 
         }
-        
+
         data = FlightData
         response = requests.get(
             "https://api.tequila.kiwi.com/v2/search", headers=header, params=parameters)
