@@ -1,23 +1,40 @@
 body {
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+}
+
+h2 {
     font-family: "Montserrat";
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+.big-heading {
+    font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+}
+
+.pricing-title {
+
+    font-size: 3rem;
+    line-height: 1.5;
+}
+
+.testimonial-text {
+    font-size: 3rem;
+    line-height: 1.5;
+
 }
 
 #title {
     background-color: #ff4c68;
     color: white;
+    text-align: left;
 }
 
-h1 {
-    font-size: 3rem;
-    font-family: 'Montserrat-Black', sans-serif;
-    line-height: 1.5;
-}
-
-h2{
-    font-family: "Monserrat";
-    font-size: 3rem;
-    line-height:1.5;
-}
 .container-fluid {
     padding: 3% 15% 7%;
 
@@ -25,7 +42,6 @@ h2{
 
 .navbar {
     padding-bottom: 4.5rem;
-
 }
 
 .navbar-brand {
@@ -53,14 +69,13 @@ h2{
     position: absolute;
     width: 20%;
     transform: rotate(20deg);
-    margin-left: 7%;
-    
+    margin-left: 6%;
+
 }
 
 #features {
     background-color: white;
-    position:relative;
-    text-align: center;
+    position: relative;
     padding: 50px;
 
 }
@@ -80,38 +95,79 @@ h2{
 }
 
 #testimonials {
-   
-    text-align: center;
     background-color: #ef8172;
-    color:#fff;
+    color: #fff;
 }
-.testimonial-image{
+
+.testimonial-image {
     width: 10%;
     border-radius: 100%;
-    margin:20px;
+    margin: 20px;
 }
-#press{
-    text-align: center;
+
+#press {
+
     background-color: #ef8172;
     padding-bottom: 5%;
 }
-.press-image{
-    width:15%;
+
+.press-image {
+    width: 15%;
     margin: 20px 20px 50px;
 
 }
-.carousel-item{
+
+.carousel-item {
     padding: 7% 15%;
 }
-.price-btn{
+
+.price-btn {
     width: 100%;
 }
-.card{
- margin-top: 5%;
- margin-right: 5%;
- margin-left: 5%;
- }
-#pricing{
-    text-align: center;
+
+.card {
+    margin-top: 5%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+#pricing {
+
     padding: 100px;
+}
+
+@media (max-width: 1032px) {
+    .title-image {
+        position: static;
+        transform: rotate(0deg);
+        width: 60%
+    }
+}
+
+#cta {
+
+    font-size: 2.3rem;
+    color: white;
+    padding: 5% 0% 0% 0%;
+    font-family: Montserrat;
+
+    background-color: #ff4c68;
+}
+
+.btn-cta {
+    margin-top: 5%;
+    margin-bottom: 3%;
+
+}
+
+#footer {
+    line-height: 3;
+    padding-top: 3%;
+
+    margin: 3%;
+}
+
+.icons {
+    font-size: 2rem;
+    margin: 0% 2%
 }
