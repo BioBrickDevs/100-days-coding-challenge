@@ -17,7 +17,7 @@ cup = "☕️"
 
 class CafeForm(FlaskForm):
     cafe = StringField('Cafe name', validators=[DataRequired()])
-    location = StringField('Location on Google Maps (URL)', validators=[URL()])
+    location = StringField('Location on Google Maps (URL)', validators=[DataRequired(),URL()])
     open_time = StringField("Opening time e.g 8AM",
                             validators=[DataRequired()])
     close_time = StringField("Closing time e.g 5:30PM",
