@@ -6,11 +6,15 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import requests
 import tmdbsimple
+import dotenv
+import os
+dotenv.load_dotenv()
 
 
-TMDB_API_KEY = "eafda2c4b0c2c5d0218da66fe8dc4646"
+TMDB_API_KEY = os.getenv("TMDB_API_KEY")
+# The movie database API key.
+
 tmdbsimple.API_KEY = TMDB_API_KEY
-
 tmdbsimple.REQUESTS_SESSION = requests.Session()
 
 app = Flask(__name__)
@@ -49,25 +53,9 @@ with app.app_context():
     db.create_all()
 
 
-new_movie = Movie(
-    title="Phone Booth",
-    year=2002,
-    description="Publicist Stuart Shepard finds himself trapped in a phone booth, pinned down by an extortionist's sniper rifle. Unable to leave or receive outside help, Stuart's negotiation with the caller leads to a jaw-dropping climax.",
-    rating=7.3,
-    ranking=10,
-    review="My favourite character was the caller.",
-    img_url="https://image.tmdb.org/t/p/w500/tjrX2oWRCM3Tvarz38zlZM7Uc10.jpg"
-)
-
-with app.app_context():
-    # db.session.add(new_movie)
-    # db.session.commit()
-    pass
-
-
 @app.route("/")
 def home():
-    all_movies = db.session.query(Movie).all()
+    all_movies = Movie.query.order_by(Movie.rating).all()
 
     return render_template("index.html", all_movies=all_movies)
 
@@ -85,7 +73,8 @@ def edit(id):
         db.session.commit()
         return redirect(url_for('home'))
 
-    return render_template("edit.html", form=form)
+    movie_to_find = Movie.query.get(id)
+    return render_template("edit.html", form=form, title=movie_to_find.title)
 
 
 @app.route("/delete/<int:id>", methods=["GET"])
@@ -125,6 +114,11 @@ def find(id):
     print(movie.title, movie.poster_path,
           movie.release_date, movie.overview)
 
+    try:
+        img = "https://image.tmdb.org/t/p/original" + movie.poster_path
+    except TypeError:
+        img = "No image"
+
     new_movie = Movie(
         title=movie.title,
         year=movie.release_date,
@@ -132,11 +126,14 @@ def find(id):
         rating=None,
         ranking=None,
         review=None,
-        img_url="https://image.tmdb.org/t/p/original" + movie.poster_path,
+        img_url=img
     )
     db.session.add(new_movie)
     db.session.commit()
-    return redirect(url_for('home'))
+    movie_to_find = Movie.query.filter_by(title=movie.title).first()
+
+    print(movie.id)
+    return redirect(url_for('edit', id=movie_to_find.id))
 
 
 if __name__ == '__main__':
