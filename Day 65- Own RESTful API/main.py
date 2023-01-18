@@ -75,6 +75,36 @@ def location():
     return jsonify(cafes)
 
 
+@app.route("/add", methods=["POST"])
+def add():
+    new_cafe = Cafe(
+        name=request.form["name"],
+        map_url=request.form["map_url"],
+        img_url=request.form["img_url"],
+        location=request.form["location"],
+        seats=request.form["seats"],
+        has_toilet=bool(request.form["has_toilet"]),
+        has_wifi=bool(request.form["has_wifi"]),
+        has_sockets=bool(request.form["has_sockets"]),
+        can_take_calls=bool(request.form["can_take_calls"]),
+        coffee_price=request.form["coffee_price"]
+    )
+    try:
+        db.session.add(new_cafe)
+        db.session.commit()
+        message = {"response": {
+            "success": "Succesfully added the new cafe."
+        }}
+        return jsonify(message)
+    except:
+        message = {"response": {
+            "Error": """Either Cafe already exits or your parameters have some wrong syntax.
+                    All must be filled"""
+        }
+        }
+        return jsonify(message)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
