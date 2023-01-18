@@ -105,12 +105,60 @@ def add():
         return jsonify(message)
 
 
+@app.route("/update-price/<int:cafe_id>", methods=["PATCH"])
+def update(cafe_id):
+
+    cafe_to_update = Cafe.query.get(cafe_id)
+
+    if cafe_to_update:
+        try:
+            cafe_to_update.price = request.form["new_price"]
+        except:
+            message = {"error": "Invalid parameter"}
+            return jsonify(message), 404
+
+        db.session.commit()
+        message = {
+            "success": "Succesfully updated the price."
+        }
+        return jsonify(message), 200
+    else:
+        message = {"error": {
+            "Not Found": "Sorry a cafe with that id was not found in the database."
+        }}
+        return jsonify(message), 404
+
+
+@app.route("/report-closed/<cafe_id>", methods=["DELETE"])
+def delete(cafe_id):
+    try:
+        submited_api_key = request.args.get("api-key")
+        print(submited_api_key)
+    except:
+        return "invalid parameter"
+
+    api_key = "TopSecretAPIKey"
+    if submited_api_key == api_key:
+        cafe_to_delete = Cafe.query.get(cafe_id)
+        if cafe_to_delete:
+            db.session.delete(cafe_to_delete)
+            db.session.commit()
+            message = {"success": {"message": "The cafe was succesfully deleted from the database"
+
+                                   }
+                       }
+            return jsonify(message), 200
+        else:
+            message = {
+                "error": "No Cafe found in the database. Cannot delete"
+            }
+            return jsonify(message), 403
+
+    else:
+        message = {
+            "error": "Sorry, that's not allowed. Make sure you have the correct api_key."}
+        return jsonify(message), 401
+
+
 if __name__ == '__main__':
     app.run(debug=True)
-
- # HTTP GET - Read Record
-
-    # HTTP POST - Create Record
-
-    # HTTP PUT/PATCH - Update Record
-    # HTTP DELETE - Delete Record
