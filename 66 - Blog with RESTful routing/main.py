@@ -125,5 +125,13 @@ def edit_post(id):
         return render_template("make-post.html", form=form, edit_post=True)
 
 
+@app.route("/delete/<int:id>")
+def delete(id):
+    post_to_delete = BlogPost.query.get(id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    return redirect(url_for('get_all_posts'))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
