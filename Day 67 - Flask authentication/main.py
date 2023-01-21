@@ -43,7 +43,7 @@ def register():
             update[key] = values[index]
 
         data = User.query.filter_by(email=update["email"]).first()
-        print(data)
+
         if data:
             flash("User account already exits.")
             return redirect(url_for('login'))
